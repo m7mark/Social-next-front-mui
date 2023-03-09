@@ -8,8 +8,8 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document'
-import theme, { roboto } from '../config/theme'
-import createEmotionCache from '../utils/createEmotionCache'
+import theme, { roboto } from '../src/config/theme'
+import createEmotionCache from '../src/utils/createEmotionCache'
 
 interface MyDocumentProps extends DocumentProps {
   emotionStyleTags: EmotionJSX.Element[]

@@ -5,7 +5,11 @@ import { SidebarProps } from './Sidebar.props'
 export const Sidebar = ({ className, ...rest }: SidebarProps) => {
   return (
     <div className={clsx(styles.sidebar, className)} {...rest}>
-      Sidebar
+      <ul>
+        <li>Home</li>
+        <li>Friends</li>
+        <li>Messages</li>
+      </ul>
     </div>
   )
 }
