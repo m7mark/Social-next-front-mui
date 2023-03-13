@@ -21,9 +21,11 @@
     "js-cookie": "^3.0.1",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-hook-form": "^7.43.5"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
     "@types/node": "latest",
     "@types/react": "latest",
     "eslint": "latest",

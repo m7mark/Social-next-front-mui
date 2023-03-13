@@ -4,14 +4,13 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import Container from '@mui/material/Container'
-import CssBaseline from '@mui/material/CssBaseline'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import * as React from 'react'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { validEmail } from '../../shared/regex'
 
 function Copyright(props: any) {
   return (
@@ -31,90 +30,112 @@ function Copyright(props: any) {
   )
 }
 
-const theme = createTheme()
+interface ILoginForm {
+  email: string
+  password: string
+}
 
-export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
-  }
+export const SignIn = () => {
+  const { control, handleSubmit } = useForm({
+    mode: 'onSubmit',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  })
+
+  const onSubmit: SubmitHandler<ILoginForm> = (data) => console.log(data)
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Controller
+            rules={{
+              // required: 'Email is required',
+              pattern: {
+                value: validEmail,
+                message: 'Email is incorrect',
+              },
+            }}
+            name="email"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <TextField
+                error={!!error}
+                helperText={error?.message || ' '}
+                {...field}
+                inputProps={{ inputMode: 'email' }}
+                margin="none"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                autoComplete="email"
+                autoFocus
+              />
+            )}
+          />
+          <Controller
+            rules={{ minLength: { value: 4, message: 'Minimal length is 4' } }}
+            name="password"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <TextField
+                {...field}
+                error={!!error}
+                helperText={error?.message || ' '}
+                margin="none"
+                required
+                fullWidth
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            )}
+          />
+
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
             </Grid>
-          </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+            <Grid item>
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </Box>
+      <Copyright sx={{ mt: 8, mb: 4 }} />
+    </Container>
   )
 }
