@@ -12,3 +12,13 @@ export interface User {
   name: string
   profile: Profile
 }
+
+export interface MeDto {
+  _id: string
+  email: string
+  passwordHash: string
+  name: string
+  followedIds: [string]
+  roles: [string]
+  profile: Profile
+}

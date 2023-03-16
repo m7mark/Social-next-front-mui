@@ -41,3 +41,14 @@
     border: 1px solid var(--gray-separator);
   }
 }
+
+.layoutAuth {
+  display: grid;
+  grid-template-areas:
+    '. headerLogo header .'
+    '.  main main .';
+  grid-template-columns: auto 110px 908px auto;
+  grid-template-rows: 48px auto;
+  gap: 15px 40px;
+  box-shadow: 0 0 0 1px var(--gray-bg);
+}

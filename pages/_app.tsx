@@ -1,6 +1,5 @@
 import { EmotionCache } from '@emotion/react'
 import { AppProps } from 'next/app'
-import { Layout } from '../src/components/layout/Layout'
 import { MainProvider } from '../src/providers/MainProvider'
 import '../src/styles/globals.scss'
 import createEmotionCache from '../src/utils/createEmotionCache'
@@ -14,11 +13,10 @@ interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+  console.log(Component.displayName)
   return (
-    <MainProvider emotionCache={emotionCache}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+    <MainProvider emotionCache={emotionCache} Component={Component}>
+      <Component {...pageProps} />
     </MainProvider>
   )
 }

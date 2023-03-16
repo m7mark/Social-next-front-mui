@@ -18,6 +18,8 @@ instance.interceptors.request.use((config) => {
   return config
 })
 
+export default instance
+
 // instance.interceptors.response.use((config) => config, async (error) => {
 //   throw error
 // })
