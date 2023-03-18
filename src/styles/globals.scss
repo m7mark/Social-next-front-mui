@@ -7,3 +7,10 @@ body {
   --gray-separator: #e7e8ec;
   --white: white;
 }
+
+.boxWhite {
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--gray-bg);
+  border: 1px solid var(--gray-separator);
+}

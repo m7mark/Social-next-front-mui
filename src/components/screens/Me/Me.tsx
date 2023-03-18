@@ -1,21 +1,25 @@
+import { ProfileHeader, ProfileInfo } from '../../ui'
 import styles from './Me.module.scss'
 import { useMe } from './useMe'
 
 export const Me = () => {
-  const { userData } = useMe()
-  console.log('user-data: ', userData)
+  const { userData, isLoading } = useMe()
+
+  if (isLoading || !userData) return null
+
   return (
     <div className={styles.me}>
-      <div>Name</div>
-      <div>
-        <div>Profile</div>
-        <div>Status</div>
-        <div>AboutME</div>
-        <div>HomeUrl</div>
-        <div>looking for a job</div>
-        <div>description</div>
-        <img src="" alt="" />
-      </div>
+      <ProfileHeader
+        photo={userData.profile.photo}
+        name={userData.name}
+        status={userData?.profile.status}
+      />
+      <ProfileInfo
+        lookingJob={userData.profile.lookingForAJob}
+        aboutMe={userData.profile.aboutMe}
+        url={userData.profile.homeUrl}
+        description={userData.profile.lookingForAJobDescription}
+      />
     </div>
   )
 }

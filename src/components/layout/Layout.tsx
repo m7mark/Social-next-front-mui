@@ -16,7 +16,9 @@ export const Layout = ({ children, displayName }: LayoutProps) => {
         displayName === 'AuthPage' && styles.layoutAuth,
       ])}
     >
-      <MainHeader className={styles.headerText} />
+      {displayName !== 'AuthPage' && (
+        <MainHeader className={styles.headerText} />
+      )}
       <div className={styles.headerLogo}>Logo</div>
       <div className={styles.headerBg}></div>
       {displayName !== 'AuthPage' && <Sidebar className={styles.sidebar} />}
