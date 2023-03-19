@@ -11,7 +11,6 @@ interface AuthProviderProps extends PropsWithChildren {
 const AuthProvider = ({ children, displayName }: AuthProviderProps) => {
   const router = useRouter()
   const currentUser = useAuth()
-  console.log(router.pathname)
 
   useEffect(() => {
     const accessToken = Cookies.get('accessToken')

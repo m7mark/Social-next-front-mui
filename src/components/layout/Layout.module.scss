@@ -3,9 +3,9 @@
   grid-template-areas:
     '. headerLogo header .'
     '. sidebar main .';
-  grid-template-columns: auto 110px 908px auto;
+  grid-template-columns: auto 164px 910px auto;
   grid-template-rows: 48px auto;
-  gap: 15px 40px;
+  gap: 15px 6px;
   box-shadow: 0 0 0 1px var(--gray-bg);
 
   .headerLogo {
