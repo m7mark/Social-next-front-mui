@@ -9,7 +9,7 @@ const removeTokenStorage = () => {
 
 export const saveToStorage = (token: string, id: string) => {
   saveTokenStorage(token)
-  localStorage.setItem('user', JSON.stringify(id))
+  localStorage.setItem('user', id)
 }
 
 export const removeFromStorage = () => {
