@@ -100,15 +100,6 @@ export const Login = () => {
             >
               <span>Sign In</span>
             </LoadingButton>
-            {/* <Button
-              disabled={isLoading}
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button> */}
             <Button fullWidth variant="outlined" sx={{ mt: 0, mb: 2 }}>
               Sign In as guest
             </Button>

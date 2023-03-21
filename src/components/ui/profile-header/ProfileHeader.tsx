@@ -4,7 +4,7 @@ import Image from 'next/image'
 import styles from './ProfileHeader.module.scss'
 import { ProfileHeaderProps } from './ProfileHeader.props'
 // import userPlaceholder from './user-placeholder.png'
-import userPlaceholder from './avatar.png'
+import userPlaceholder from '../../../shared/img/avatar.png'
 
 export const ProfileHeader = ({
   userData,

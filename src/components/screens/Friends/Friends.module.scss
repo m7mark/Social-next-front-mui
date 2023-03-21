@@ -1,0 +1,24 @@
+.search {
+  padding: 20px;
+
+  .form {
+    padding: 1rem;
+  }
+}
+.friendsList {
+  padding: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  .paginate {
+    margin-bottom: 10px;
+  }
+
+  .item {
+    padding: 12px 0;
+    border-top: 1px solid var(--gray-separator);
+    &:nth-child(2) {
+      border: none;
+    }
+  }
+}

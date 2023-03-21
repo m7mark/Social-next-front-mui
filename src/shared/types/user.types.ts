@@ -22,3 +22,16 @@ export interface MeDto {
   roles: [string]
   profile: Profile
 }
+
+export interface UsersDto {
+  docs: User[]
+  totalDocs: number
+  limit: number
+  totalPages: number
+  page: number
+  pagingCounter: number
+  hasPrevPage: boolean
+  hasNextPage: boolean
+  prevPage: number
+  nextPage: number
+}
