@@ -8,49 +8,36 @@ import {
 } from '@mui/material'
 import InputBase from '@mui/material/InputBase'
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { FriendItem } from './FriendItem/FriendItem'
 import { FriendItemSkeleton } from './FriendItem/FriendItemSkeleton'
 import styles from './Friends.module.scss'
 import { useFriends } from './useFriends'
 
 export const Friends = () => {
-  const { usersList, isLoading, setQueryFilter } = useFriends()
-
-  const [currentPage, setCurrentPage] = useState(1)
-  const [countPages, setCountPages] = useState<number | undefined>(undefined)
-  useEffect(() => {
-    if (usersList?.totalPages) setCountPages(usersList?.totalPages)
-  }, [usersList?.totalPages])
-
-  const changePage = (event: React.ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value)
-    setQueryFilter({ page: value })
-  }
+  const {
+    usersList,
+    isLoading,
+    changePage,
+    onSubmit,
+    currentPage,
+    totalPages,
+  } = useFriends()
 
   const { control, handleSubmit } = useForm({
-    mode: 'all',
+    mode: 'onSubmit',
     defaultValues: {
       term: '',
       isFriends: false,
     },
   })
 
-  const onSubmit: SubmitHandler<{ term: string; isFriends: boolean }> = ({
-    term,
-    isFriends,
-  }) => {
-    setQueryFilter({ term, page: 1, isFriends })
-    setCurrentPage(1)
-  }
-
   const isSkeleton = isLoading || !usersList
   const skeletonArray = new Array(10).fill(null)
 
   return (
     <>
-      <div className={clsx(styles.search, 'boxWhite')}>
+      <div className={clsx(styles.findForm, 'boxWhite')}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Paper
             variant="outlined"
@@ -93,10 +80,10 @@ export const Friends = () => {
       </div>
 
       <div className={clsx(styles.friendsList, 'boxWhite')}>
-        {countPages ? (
+        {totalPages ? (
           <Pagination
             className={styles.paginate}
-            count={countPages}
+            count={totalPages}
             page={currentPage}
             onChange={changePage}
           />

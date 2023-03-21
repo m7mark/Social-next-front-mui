@@ -11,11 +11,12 @@ export interface GetUsersProps {
 
 export const UserService = {
   async getUsers({ term, limit, page, isFriends }: GetUsersProps) {
-    const query = `${page ? `page=${page}` : ''}${
-      limit ? `&limit=${limit}` : ''
-    }${term ? `&term=${term}` : ''}${isFriends ? `&friend=${isFriends}` : ''}`
+    const a = page ? `page=${page}` : ''
+    const b = isFriends ? `&friend=${isFriends}` : ''
+    const c = term ? `&term=${term}` : ''
+    const d = limit ? `&limit=${limit}` : ''
+    const query = a + b + c + d
 
-    console.log(query)
     const response = await instance.get<UsersDto>(
       getUserUrl(`/get-users/?${query}`)
     )

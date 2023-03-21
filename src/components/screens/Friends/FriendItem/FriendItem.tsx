@@ -19,6 +19,7 @@ export const FriendItem = ({
         height={80}
         alt="user-photo"
         style={{ borderRadius: '50%' }}
+        priority
       />
       <div>
         <div className={styles.name}>{user.name}</div>

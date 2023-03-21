@@ -1,3 +1,7 @@
 export default function MessagesPage() {
-  return <>Messages</>
+  return (
+    <div className="boxWhite" style={{ padding: '1rem' }}>
+      Messages in Developing ...
+    </div>
+  )
 }
