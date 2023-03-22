@@ -21,8 +21,14 @@ export const Login = () => {
     },
   })
 
-  const { onSubmit, serverError, closeServerError, isLoading, isServerError } =
-    useLogin()
+  const {
+    onSubmit,
+    loginTestUser,
+    serverError,
+    closeServerError,
+    isLoading,
+    isServerError,
+  } = useLogin()
 
   return (
     <>
@@ -100,7 +106,12 @@ export const Login = () => {
             >
               <span>Sign In</span>
             </LoadingButton>
-            <Button fullWidth variant="outlined" sx={{ mt: 0, mb: 2 }}>
+            <Button
+              fullWidth
+              variant="outlined"
+              sx={{ mt: 0, mb: 2 }}
+              onClick={loginTestUser}
+            >
               Sign In as guest
             </Button>
             <Link href="#" variant="body2">

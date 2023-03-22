@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useMutation } from 'react-query'
+import { getTestAuthDto } from '../../../config/api.config'
 import { AuthService } from '../../../services/auth/auth.service'
 import { IApiError, ILoginFormInput } from './auth.interface'
 
@@ -31,6 +32,14 @@ export const useLogin = () => {
   const closeServerError = () => {
     setIsServerError(false)
   }
+  const loginTestUser = () => mutate(getTestAuthDto())
 
-  return { onSubmit, isLoading, serverError, closeServerError, isServerError }
+  return {
+    onSubmit,
+    loginTestUser,
+    isLoading,
+    serverError,
+    closeServerError,
+    isServerError,
+  }
 }
