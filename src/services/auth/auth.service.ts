@@ -18,7 +18,7 @@ export const AuthService = {
     }
     return response
   },
-  async register(email: string, name: string, password: string) {
+  async register(name: string, email: string, password: string) {
     const response = await axiosBase.post<AuthDto>(getAuthUrl('/register'), {
       email,
       name,

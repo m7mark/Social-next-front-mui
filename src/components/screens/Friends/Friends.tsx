@@ -79,35 +79,38 @@ export const Friends = () => {
         </form>
       </div>
 
-      <div className={clsx(styles.friendsList, 'boxWhite')}>
-        {totalPages ? (
-          <Pagination
-            className={styles.paginate}
-            count={totalPages}
-            page={currentPage}
-            onChange={changePage}
-          />
-        ) : (
-          <Skeleton />
-        )}
-        {isSkeleton ? (
-          <>
-            {skeletonArray.map((_, i) => (
-              <FriendItemSkeleton key={i} className={styles.item} />
-            ))}
-          </>
-        ) : (
-          <>
-            {usersList.docs.map((user) => (
-              <FriendItem
-                className={styles.item}
-                key={user._id}
-                user={user}
-                isLoading={isLoading}
-              />
-            ))}
-          </>
-        )}
+      <div className={styles.mainContainer}>
+        <div className={clsx(styles.friendsList, 'boxWhite')}>
+          {totalPages ? (
+            <Pagination
+              className={styles.paginate}
+              count={totalPages}
+              page={currentPage}
+              onChange={changePage}
+            />
+          ) : (
+            <Skeleton />
+          )}
+          {isSkeleton ? (
+            <>
+              {skeletonArray.map((_, i) => (
+                <FriendItemSkeleton key={i} className={styles.item} />
+              ))}
+            </>
+          ) : (
+            <>
+              {usersList.docs.map((user) => (
+                <FriendItem
+                  className={styles.item}
+                  key={user._id}
+                  user={user}
+                  isLoading={isLoading}
+                />
+              ))}
+            </>
+          )}
+        </div>
+        <div className={clsx(styles.mainSidebar, 'boxWhite')}>Sidebar</div>
       </div>
     </>
   )

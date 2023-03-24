@@ -9,7 +9,7 @@ import Link from '@mui/material/Link'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { Controller, useForm } from 'react-hook-form'
-import { validEmail } from '../../../shared/regex'
+import { validEmail } from '../../../../shared/regex'
 import { useLogin } from './useLogin'
 
 export const Login = () => {
@@ -69,8 +69,9 @@ export const Login = () => {
                   required
                   fullWidth
                   id="email"
+                  InputLabelProps={{ shrink: true }}
                   label="Email Address"
-                  // autoComplete="email"
+                  autoComplete="email"
                   autoFocus
                 />
               )}
@@ -89,10 +90,11 @@ export const Login = () => {
                   margin="dense"
                   required
                   fullWidth
+                  InputLabelProps={{ shrink: true }}
                   label="Password"
                   type="password"
                   id="password"
-                  // autoComplete="current-password"
+                  autoComplete="current-password"
                 />
               )}
             />
@@ -114,7 +116,7 @@ export const Login = () => {
             >
               Sign In as guest
             </Button>
-            <Link href="#" variant="body2">
+            <Link href="/auth/register" variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
           </form>

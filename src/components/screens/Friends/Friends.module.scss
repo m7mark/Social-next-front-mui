@@ -2,20 +2,30 @@
   padding: 20px;
 }
 
-.friendsList {
-  padding: 20px;
+.mainContainer {
+  display: grid;
+  grid-template-columns: 62% 1fr;
+  gap: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  align-items: flex-start;
 
-  .paginate {
-    margin-bottom: 10px;
-  }
+  .friendsList {
+    padding: 20px;
 
-  .item {
-    padding: 12px 0;
-    border-top: 1px solid var(--gray-separator);
-    &:nth-child(2) {
-      border: none;
+    .paginate {
+      margin-bottom: 10px;
     }
+
+    .item {
+      padding: 12px 0;
+      border-top: 1px solid var(--gray-separator);
+      &:nth-child(2) {
+        border: none;
+      }
+    }
+  }
+  .mainSidebar {
+    padding: 20px;
   }
 }
