@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../../hooks/useAuth'
 import { AuthService } from '../../../services/auth/auth.service'
 
@@ -6,7 +6,7 @@ export const useMe = () => {
   const currentUser = useAuth()
 
   const { data, isLoading, refetch, isFetching } = useQuery(
-    'me',
+    ['me'],
     () => AuthService.getMe(),
     {
       select: ({ data }) => data,

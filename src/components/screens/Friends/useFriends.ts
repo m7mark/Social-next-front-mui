@@ -1,6 +1,6 @@
+import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
-import { useQuery } from 'react-query'
 import { UserService } from '../../../services/user/user.service'
 import { IUsersProps } from '../../../shared/types/api.types'
 

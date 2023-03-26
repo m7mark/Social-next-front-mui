@@ -1,8 +1,8 @@
+import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
-import { useMutation } from 'react-query'
 import { AuthService } from '../../../../services/auth/auth.service'
 import { IApiError, IAuthProps } from '../../../../shared/types/api.types'
 
@@ -11,7 +11,7 @@ export const useRegister = () => {
   const [serverError, setServerError] = useState<string | undefined>(undefined)
   const { query, push } = useRouter()
   const { isLoading, mutate } = useMutation(
-    'register',
+    ['register'],
     (data: IAuthProps) =>
       AuthService.register(data.name, data.email, data.password),
     {

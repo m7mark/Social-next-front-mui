@@ -1,8 +1,8 @@
+import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
-import { useMutation } from 'react-query'
 import { UserService } from '../../../../services/user/user.service'
 import {
   IApiError,
@@ -15,7 +15,7 @@ export const useEditProfile = (refetch: any) => {
   const { query, push } = useRouter()
 
   const { isLoading, mutate: updateProfile } = useMutation(
-    'login',
+    ['login'],
     (data: IProfileUpdateProps) => UserService.updateUserProfile(data),
     {
       onError(error: AxiosError<IApiError>) {
@@ -31,7 +31,7 @@ export const useEditProfile = (refetch: any) => {
   )
 
   const { isLoading: isLoadingUpdatedImg, mutate: updatePhoto } = useMutation(
-    'photoUpload',
+    ['photoUpload'],
     (formData: FormData) => UserService.uploadPhoto(formData),
     {
       onError(error: AxiosError<IApiError>) {

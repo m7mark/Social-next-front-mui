@@ -1,10 +1,10 @@
 import { CacheProvider, EmotionCache, ThemeProvider } from '@emotion/react'
 import { CssBaseline } from '@mui/material'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { NextComponentType } from 'next'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { PropsWithChildren } from 'react'
-import { QueryClient, QueryClientProvider } from 'react-query'
 import { Layout } from '../components/layout/Layout'
 import theme from '../config/theme'
 
