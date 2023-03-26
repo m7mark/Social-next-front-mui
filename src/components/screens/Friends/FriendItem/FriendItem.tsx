@@ -3,6 +3,7 @@ import styles from './FriendItem.module.scss'
 import { FriendItemProps } from './FriendItem.props'
 
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 import userPlaceholder from '../../../../shared/img/avatar.png'
 
 export const FriendItem = ({
@@ -11,9 +12,11 @@ export const FriendItem = ({
   className,
   ...rest
 }: FriendItemProps) => {
+  const { push } = useRouter()
   return (
     <div className={clsx(styles.friendItem, className)} {...rest}>
       <Image
+        onClick={() => push(`/friend/${user._id}`)}
         src={user.profile.photo ?? userPlaceholder}
         width={80}
         height={80}

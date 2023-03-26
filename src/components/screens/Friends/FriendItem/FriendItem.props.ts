@@ -1,9 +1,9 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react'
-import { User } from '../../../../shared/types/user.types'
+import { UserDto } from '../../../../shared/types/user.types'
 
 export interface FriendItemProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  user: User
+  user: UserDto
   isLoading: boolean
 }
 

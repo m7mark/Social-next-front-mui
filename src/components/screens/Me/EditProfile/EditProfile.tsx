@@ -5,7 +5,7 @@ import {
   Checkbox,
   FormControlLabel,
   Skeleton,
-  TextField,
+  TextField
 } from '@mui/material'
 import Image from 'next/image'
 import { Controller, useForm } from 'react-hook-form'
@@ -19,10 +19,19 @@ export const EditProfile = () => {
   const {
     userData,
     refetch: refetchUserData,
-    isLoading: isLoadingUserData,
     isFetching: isFetchingUserData,
   } = useMe()
-  console.log(isFetchingUserData)
+
+  const {
+    onSubmit,
+    serverError,
+    closeServerError,
+    isLoading,
+    isServerError,
+    uploadPhoto,
+    isLoadingUpdatedImg,
+  } = useEditProfile(refetchUserData)
+
   const { control, handleSubmit } = useForm({
     mode: 'onSubmit',
     defaultValues: {
@@ -35,16 +44,6 @@ export const EditProfile = () => {
     },
     values: userData?.profile,
   })
-
-  const {
-    onSubmit,
-    serverError,
-    closeServerError,
-    isLoading,
-    isServerError,
-    uploadPhoto,
-    isLoadingUpdatedImg,
-  } = useEditProfile(refetchUserData)
 
   return (
     <Box
@@ -59,12 +58,12 @@ export const EditProfile = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className={styles.photoEdit}>
-        {isLoadingUpdatedImg || !userData?.profile.photo ? (
+        {isLoadingUpdatedImg || isFetchingUserData ? (
           <Skeleton height={150} width={150} variant="circular" />
         ) : (
           <>
             <Image
-              src={userData?.profile.photo ?? userPlaceholder}
+              src={userData ? userData.profile.photo : userPlaceholder}
               alt="User photo"
               width={150}
               height={150}

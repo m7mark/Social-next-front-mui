@@ -16,7 +16,7 @@ export const useEditProfile = (refetch: any) => {
 
   const { isLoading, mutate: updateProfile } = useMutation(
     ['login'],
-    (data: IProfileUpdateProps) => UserService.updateUserProfile(data),
+    (data: IProfileUpdateProps) => UserService.updateProfile(data),
     {
       onError(error: AxiosError<IApiError>) {
         setIsServerError(true)

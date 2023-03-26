@@ -10,6 +10,7 @@ import userPlaceholder from '../../../shared/img/avatar.png'
 export const ProfileHeader = ({
   userData,
   isLoading,
+  isMyProfile,
   ...rest
 }: ProfileHeaderProps) => {
   const { push } = useRouter()
@@ -45,13 +46,17 @@ export const ProfileHeader = ({
               {userData.profile.status ?? 'Empty status'}
             </Typography>
           </div>
-          <Button
-            className={styles.button}
-            variant="outlined"
-            onClick={() => push('/me/edit')}
-          >
-            Edit Profile
-          </Button>
+          {isMyProfile ? (
+            <Button
+              className={styles.button}
+              variant="outlined"
+              onClick={() => push('/me/edit')}
+            >
+              Edit Profile
+            </Button>
+          ) : (
+            <div></div>
+          )}
         </>
       )}
     </div>

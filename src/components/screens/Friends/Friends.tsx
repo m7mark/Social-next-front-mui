@@ -89,7 +89,7 @@ export const Friends = () => {
               onChange={changePage}
             />
           ) : (
-            <Skeleton />
+            <Skeleton height={42} />
           )}
           {isSkeleton ? (
             <>

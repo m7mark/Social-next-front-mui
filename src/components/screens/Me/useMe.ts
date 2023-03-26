@@ -14,7 +14,6 @@ export const useMe = () => {
     }
   )
   const userData = data?._id === currentUser ? data : undefined
-  console.log(isFetching)
 
   return { userData, isLoading, isFetching, refetch }
 }

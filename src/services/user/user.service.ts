@@ -1,4 +1,4 @@
-import instance from '../../api/interceptors'
+import instance, { axiosBase } from '../../api/interceptors'
 import { getUserUrl } from '../../config/api.config'
 import { IProfileUpdateProps, IUsersProps } from '../../shared/types/api.types'
 import { UserDto, UsersDto } from '../../shared/types/user.types'
@@ -16,12 +16,20 @@ export const UserService = {
     )
     return response
   },
-  async updateUserProfile(profile: IProfileUpdateProps) {
+
+  async getById(id: string) {
+    const response = await axiosBase.get<UserDto>(getUserUrl(`/profile/${id}`))
+    return response
+  },
+
+  async updateProfile(profile: IProfileUpdateProps) {
     const response = await instance.patch<UserDto>(getUserUrl('/profile'), {
       ...profile,
+      homeUrl: profile.homeUrl ? profile.homeUrl : null,
     })
     return response
   },
+
   async uploadPhoto(formData: FormData) {
     const response = await instance.post<UserDto>(
       getUserUrl('/photo'),
