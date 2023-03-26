@@ -1,6 +1,6 @@
 import HowToRegOutlinedIcon from '@mui/icons-material/HowToRegOutlined'
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Alert, Link, Snackbar } from '@mui/material'
+import { Link } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { Controller, useForm } from 'react-hook-form'
 import { validEmail } from '../../../../shared/regex'
+import { ShowServerError } from '../../../ui'
 import { useRegister } from './useRegister'
 
 export const Register = () => {
@@ -127,20 +128,11 @@ export const Register = () => {
             </Link>
           </form>
         </Box>
-        <Snackbar
-          open={isServerError}
-          autoHideDuration={6000}
-          onClose={closeServerError}
-        >
-          <Alert
-            severity="error"
-            sx={{ width: '100%' }}
-            variant="filled"
-            onClose={closeServerError}
-          >
-            {serverError}
-          </Alert>
-        </Snackbar>
+        <ShowServerError
+          isServerError={isServerError}
+          serverError={serverError}
+          closeServerError={closeServerError}
+        />
       </Container>
     </>
   )

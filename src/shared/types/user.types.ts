@@ -1,4 +1,4 @@
-export interface Profile {
+export interface ProfileDto {
   status: string
   aboutMe: string
   homeUrl: string
@@ -7,10 +7,10 @@ export interface Profile {
   photo: string
 }
 
-export interface User {
+export interface UserDto {
   _id: string
   name: string
-  profile: Profile
+  profile: ProfileDto
 }
 
 export interface MeDto {
@@ -20,11 +20,11 @@ export interface MeDto {
   name: string
   followedIds: [string]
   roles: [string]
-  profile: Profile
+  profile: ProfileDto
 }
 
 export interface UsersDto {
-  docs: User[]
+  docs: UserDto[]
   totalDocs: number
   limit: number
   totalPages: number

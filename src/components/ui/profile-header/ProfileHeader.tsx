@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from './ProfileHeader.module.scss'
 import { ProfileHeaderProps } from './ProfileHeader.props'
 // import userPlaceholder from './user-placeholder.png'
+import { useRouter } from 'next/router'
 import userPlaceholder from '../../../shared/img/avatar.png'
 
 export const ProfileHeader = ({
@@ -11,6 +12,7 @@ export const ProfileHeader = ({
   isLoading,
   ...rest
 }: ProfileHeaderProps) => {
+  const { push } = useRouter()
   const isSkeleton = isLoading || !userData
 
   return (
@@ -43,7 +45,11 @@ export const ProfileHeader = ({
               {userData.profile.status ?? 'Empty status'}
             </Typography>
           </div>
-          <Button className={styles.button} variant="outlined">
+          <Button
+            className={styles.button}
+            variant="outlined"
+            onClick={() => push('/me/edit')}
+          >
             Edit Profile
           </Button>
         </>

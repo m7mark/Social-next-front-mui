@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useQuery } from 'react-query'
-import { GetUsersProps, UserService } from '../../../services/user/user.service'
+import { UserService } from '../../../services/user/user.service'
+import { IUsersProps } from '../../../shared/types/api.types'
 
 export const useFriends = () => {
-  const [filter, setFilter] = useState<GetUsersProps>({
+  const [filter, setFilter] = useState<IUsersProps>({
     term: undefined,
     limit: undefined,
     page: 1,
@@ -23,7 +24,7 @@ export const useFriends = () => {
     if (data?.totalPages) setTotalPages(data?.totalPages)
   }, [data?.totalPages])
 
-  const setQueryFilter = (props: GetUsersProps) => {
+  const setQueryFilter = (props: IUsersProps) => {
     setFilter((prev) => ({ ...prev, ...props }))
   }
 

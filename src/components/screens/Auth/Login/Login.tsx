@@ -1,6 +1,5 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Alert, Snackbar } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -10,6 +9,7 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { Controller, useForm } from 'react-hook-form'
 import { validEmail } from '../../../../shared/regex'
+import { ShowServerError } from '../../../ui'
 import { useLogin } from './useLogin'
 
 export const Login = () => {
@@ -121,20 +121,11 @@ export const Login = () => {
             </Link>
           </form>
         </Box>
-        <Snackbar
-          open={isServerError}
-          autoHideDuration={6000}
-          onClose={closeServerError}
-        >
-          <Alert
-            severity="error"
-            sx={{ width: '100%' }}
-            variant="filled"
-            onClose={closeServerError}
-          >
-            {serverError}
-          </Alert>
-        </Snackbar>
+        <ShowServerError
+          isServerError={isServerError}
+          serverError={serverError}
+          closeServerError={closeServerError}
+        />
       </Container>
     </>
   )

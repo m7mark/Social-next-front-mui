@@ -5,7 +5,7 @@ import { SubmitHandler } from 'react-hook-form'
 import { useMutation } from 'react-query'
 import { getTestAuthDto } from '../../../../config/api.config'
 import { AuthService } from '../../../../services/auth/auth.service'
-import { IApiError, IAuthFormInput } from '../auth.interface'
+import { IApiError, IAuthProps } from '../../../../shared/types/api.types'
 
 export const useLogin = () => {
   const [isServerError, setIsServerError] = useState(false)
@@ -13,7 +13,7 @@ export const useLogin = () => {
   const { query, push } = useRouter()
   const { isLoading, mutate } = useMutation(
     'login',
-    (data: Omit<IAuthFormInput, 'name'>) =>
+    (data: Omit<IAuthProps, 'name'>) =>
       AuthService.login(data.email, data.password),
     {
       onError(error: AxiosError<IApiError>) {
@@ -28,7 +28,7 @@ export const useLogin = () => {
     }
   )
 
-  const onSubmit: SubmitHandler<Omit<IAuthFormInput, 'name'>> = (data) =>
+  const onSubmit: SubmitHandler<Omit<IAuthProps, 'name'>> = (data) =>
     mutate(data)
 
   const closeServerError = () => {

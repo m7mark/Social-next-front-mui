@@ -1,11 +1,18 @@
 .friendItem {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 1rem;
   align-items: center;
 
   .name {
     font-weight: 700;
     font-size: 14px;
+  }
+  .status {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
   }
 }

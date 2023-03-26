@@ -23,7 +23,7 @@ export const FriendItem = ({
       />
       <div>
         <div className={styles.name}>{user.name}</div>
-        <div>{user.profile.status}</div>
+        <div className={styles.status}>{user.profile.status}</div>
       </div>
     </div>
   )
