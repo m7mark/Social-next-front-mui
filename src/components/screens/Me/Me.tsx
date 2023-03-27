@@ -7,7 +7,7 @@ export const Me = () => {
   return (
     <div>
       <ProfileHeader userData={userData} isLoading={isLoading} isMyProfile />
-      <ProfileInfo userData={userData} isLoading={isLoading} isMyProfile />
+      <ProfileInfo userData={userData} isLoading={isLoading} />
     </div>
   )
 }
