@@ -16,12 +16,12 @@ export const FriendItem = ({
   return (
     <div className={clsx(styles.friendItem, className)} {...rest}>
       <Image
+        className={styles.img}
         onClick={() => push(`/friend/${user._id}`)}
         src={user.profile.photo ?? userPlaceholder}
         width={80}
         height={80}
         alt="user-photo"
-        style={{ borderRadius: '50%' }}
         priority
       />
       <div>

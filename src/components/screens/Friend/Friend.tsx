@@ -1,14 +1,8 @@
-import { UserDto } from '../../../shared/types/user.types'
 import { ProfileHeader, ProfileInfo } from '../../ui'
 import { useFriend } from './useFriend'
 
-interface IFriend {
-  userData: UserDto
-}
-
 export const Friend = () => {
-  const { userData, isLoading, isError } = useFriend()
-  console.log(userData, isLoading, isError)
+  const { userData, isLoading } = useFriend()
   return (
     <div>
       <ProfileHeader userData={userData} isLoading={isLoading} />

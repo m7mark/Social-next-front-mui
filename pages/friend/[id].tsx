@@ -19,7 +19,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery(['getUserStaticProps', id], () =>
-    UserService.getById(String(id)).then(({ data }) => data)
+    UserService.getById(String(id))
   )
 
   return {

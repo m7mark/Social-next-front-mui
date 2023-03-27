@@ -9,7 +9,6 @@ export const useMe = () => {
     ['me'],
     () => AuthService.getMe(),
     {
-      select: ({ data }) => data,
       enabled: !!currentUser,
     }
   )

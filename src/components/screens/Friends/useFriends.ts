@@ -14,15 +14,14 @@ export const useFriends = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [totalPages, setTotalPages] = useState<number | undefined>(undefined)
 
-  const { data, isLoading } = useQuery(
-    ['get-users', filter],
-    () => UserService.getUsers({ ...filter }),
-    { select: ({ data }) => data }
+  const { data: usersList, isLoading } = useQuery(
+    ['getUserStaticProps', filter],
+    () => UserService.getUsers({ ...filter })
   )
 
   useEffect(() => {
-    if (data?.totalPages) setTotalPages(data?.totalPages)
-  }, [data?.totalPages])
+    if (usersList?.totalPages) setTotalPages(usersList?.totalPages)
+  }, [usersList?.totalPages])
 
   const setQueryFilter = (props: IUsersProps) => {
     setFilter((prev) => ({ ...prev, ...props }))
@@ -42,7 +41,7 @@ export const useFriends = () => {
   }
 
   return {
-    usersList: data,
+    usersList,
     isLoading,
     currentPage,
     totalPages,

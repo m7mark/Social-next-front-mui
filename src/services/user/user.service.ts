@@ -11,15 +11,15 @@ export const UserService = {
     const d = limit ? `&limit=${limit}` : ''
     const query = a + b + c + d
 
-    const response = await instance.get<UsersDto>(
+    const { data } = await instance.get<UsersDto>(
       getUserUrl(`/get-users/?${query}`)
     )
-    return response
+    return data
   },
 
   async getById(id: string) {
-    const response = await axiosBase.get<UserDto>(getUserUrl(`/profile/${id}`))
-    return response
+    const { data } = await axiosBase.get<UserDto>(getUserUrl(`/profile/${id}`))
+    return data
   },
 
   async updateProfile(profile: IProfileUpdateProps) {

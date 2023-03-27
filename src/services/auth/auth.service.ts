@@ -35,7 +35,7 @@ export const AuthService = {
   },
 
   async getMe() {
-    const response = await axios.get<MeDto>(getAuthUrl('/me'))
-    return response
+    const { data } = await axios.get<MeDto>(getAuthUrl('/me'))
+    return data
   },
 }

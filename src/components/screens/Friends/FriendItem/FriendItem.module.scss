@@ -4,6 +4,15 @@
   gap: 1rem;
   align-items: center;
 
+  .img {
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 1;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
   .name {
     font-weight: 700;
     font-size: 14px;

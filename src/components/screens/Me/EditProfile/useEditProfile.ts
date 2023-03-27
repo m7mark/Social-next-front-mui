@@ -15,7 +15,7 @@ export const useEditProfile = (refetch: any) => {
   const { query, push } = useRouter()
 
   const { isLoading, mutate: updateProfile } = useMutation(
-    ['login'],
+    ['editProfile'],
     (data: IProfileUpdateProps) => UserService.updateProfile(data),
     {
       onError(error: AxiosError<IApiError>) {
@@ -31,7 +31,7 @@ export const useEditProfile = (refetch: any) => {
   )
 
   const { isLoading: isLoadingUpdatedImg, mutate: updatePhoto } = useMutation(
-    ['photoUpload'],
+    ['editPhoto'],
     (formData: FormData) => UserService.uploadPhoto(formData),
     {
       onError(error: AxiosError<IApiError>) {
