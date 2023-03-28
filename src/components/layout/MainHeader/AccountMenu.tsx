@@ -1,5 +1,4 @@
 import Logout from '@mui/icons-material/Logout'
-import PersonAdd from '@mui/icons-material/PersonAdd'
 import Settings from '@mui/icons-material/Settings'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
@@ -79,16 +78,7 @@ export const AccountMenu = () => {
         <MenuItem onClick={handleClose}>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
-        </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />

@@ -1,11 +1,10 @@
 import { Button, Skeleton, Typography } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
-import styles from './ProfileHeader.module.scss'
-import { ProfileHeaderProps } from './ProfileHeader.props'
-// import userPlaceholder from './user-placeholder.png'
 import { useRouter } from 'next/router'
 import userPlaceholder from '../../../shared/img/avatar.png'
+import styles from './ProfileHeader.module.scss'
+import { ProfileHeaderProps } from './ProfileHeader.props'
 
 export const ProfileHeader = ({
   userData,
@@ -48,8 +47,9 @@ export const ProfileHeader = ({
           </div>
           {isMyProfile ? (
             <Button
+              size="small"
               className={styles.button}
-              variant="outlined"
+              variant="text"
               onClick={() => push('/me/edit')}
             >
               Edit Profile

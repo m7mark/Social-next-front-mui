@@ -1,14 +1,10 @@
 import SearchIcon from '@mui/icons-material/Search'
-import {
-  Checkbox,
-  IconButton,
-  Pagination,
-  Paper,
-  Skeleton,
-} from '@mui/material'
+import { Checkbox, IconButton, Pagination, Paper } from '@mui/material'
 import InputBase from '@mui/material/InputBase'
 import clsx from 'clsx'
+import Image from 'next/image'
 import { Controller, useForm } from 'react-hook-form'
+import slider from '../../../shared/img/slider1.png'
 import { FriendItem } from './FriendItem/FriendItem'
 import { FriendItemSkeleton } from './FriendItem/FriendItemSkeleton'
 import styles from './Friends.module.scss'
@@ -79,7 +75,7 @@ export const Friends = () => {
         </form>
       </div>
 
-      <div className={styles.mainContainer}>
+      <div className={clsx(styles.mainContainer, 'twoColumn')}>
         <div className={clsx(styles.friendsList, 'boxWhite')}>
           {totalPages ? (
             <Pagination
@@ -89,7 +85,7 @@ export const Friends = () => {
               onChange={changePage}
             />
           ) : (
-            <Skeleton height={42} />
+            <div className={styles.paginateSkeleton} />
           )}
           {isSkeleton ? (
             <>
@@ -110,7 +106,9 @@ export const Friends = () => {
             </>
           )}
         </div>
-        <div className={clsx(styles.mainSidebar, 'boxWhite')}>Sidebar</div>
+        <div className={clsx(styles.mainSidebar, 'boxWhite')}>
+          <Image src={slider} alt="slider image" width={285} height={285} />
+        </div>
       </div>
     </>
   )

@@ -3,18 +3,15 @@
 }
 
 .mainContainer {
-  display: grid;
-  grid-template-columns: 62% 1fr;
-  gap: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  align-items: flex-start;
-
   .friendsList {
     padding: 20px;
 
     .paginate {
       margin-bottom: 10px;
+    }
+    .paginateSkeleton {
+      margin-bottom: 10px;
+      height: 32px;
     }
 
     .item {
@@ -26,6 +23,13 @@
     }
   }
   .mainSidebar {
+    display: flex;
     padding: 20px;
+    align-content: center;
+    justify-content: center;
+
+    > img {
+      border-radius: 6px;
+    }
   }
 }

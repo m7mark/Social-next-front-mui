@@ -16,3 +16,12 @@ body {
   box-shadow: 0 0 0 1px var(--gray-bg);
   border: 1px solid var(--gray-separator);
 }
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: 62% 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+}
