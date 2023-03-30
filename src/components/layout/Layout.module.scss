@@ -11,6 +11,9 @@
   .headerLogo {
     grid-area: headerLogo;
     align-self: center;
+    > img {
+      display: block;
+    }
   }
 
   .headerText {
@@ -39,9 +42,10 @@
 
 .layoutAuth {
   display: grid;
+  justify-items: center;
   grid-template-areas:
-    '. headerLogo . .'
-    '.  main main .';
-  grid-template-columns: auto 110px 608px auto;
+    '. headerLogo .'
+    '.  main .';
+  grid-template-columns: auto 718px auto;
   grid-template-rows: 48px auto;
 }
