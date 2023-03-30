@@ -4,7 +4,7 @@ import { SubmitHandler } from 'react-hook-form'
 import { UserService } from '../../../services/user/user.service'
 import { IUsersProps } from '../../../shared/types/api.types'
 
-export const useFriends = () => {
+export const useFriendsList = () => {
   const [filter, setFilter] = useState<IUsersProps>({
     term: undefined,
     limit: undefined,

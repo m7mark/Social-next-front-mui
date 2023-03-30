@@ -1,7 +1,6 @@
-import { Button, Skeleton, Typography } from '@mui/material'
+import { Skeleton, Typography } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import userPlaceholder from '../../../shared/img/avatar.png'
 import styles from './ProfileHeader.module.scss'
 import { ProfileHeaderProps } from './ProfileHeader.props'
@@ -9,10 +8,9 @@ import { ProfileHeaderProps } from './ProfileHeader.props'
 export const ProfileHeader = ({
   userData,
   isLoading,
-  isMyProfile,
+  children,
   ...rest
 }: ProfileHeaderProps) => {
-  const { push } = useRouter()
   const isSkeleton = isLoading || !userData
 
   return (
@@ -45,18 +43,7 @@ export const ProfileHeader = ({
               {userData.profile.status ?? 'Empty status'}
             </Typography>
           </div>
-          {isMyProfile ? (
-            <Button
-              size="small"
-              className={styles.button}
-              variant="text"
-              onClick={() => push('/me/edit')}
-            >
-              Edit Profile
-            </Button>
-          ) : (
-            <div></div>
-          )}
+          <div className={styles.button}>{children}</div>
         </>
       )}
     </div>

@@ -24,6 +24,9 @@ export const AccountMenu = () => {
       AuthService.logout()
       push('/auth')
     }
+    if (e.target.textContent === 'Profile') {
+      push('/me')
+    }
     setAnchorEl(null)
   }
   return (
@@ -76,7 +79,8 @@ export const AccountMenu = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
+          <Avatar />
+          Profile
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>

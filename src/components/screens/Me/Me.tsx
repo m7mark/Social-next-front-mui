@@ -1,12 +1,15 @@
+import { useMe } from '../../../hooks/useMe'
 import { ProfileHeader, ProfileInfo } from '../../ui'
-import { useMe } from './useMe'
+import { EditButton } from './EditButton/EditButton'
 
 export const Me = () => {
-  const { userData, isLoading } = useMe()
+  const { meData: userData, isLoading } = useMe()
 
   return (
     <div>
-      <ProfileHeader userData={userData} isLoading={isLoading} isMyProfile />
+      <ProfileHeader userData={userData} isLoading={isLoading}>
+        <EditButton />
+      </ProfileHeader>
       <ProfileInfo userData={userData} isLoading={isLoading} />
     </div>
   )

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { UserService } from '../../../services/user/user.service'
 
@@ -15,8 +15,23 @@ export const useFriend = () => {
     }
   )
 
+  const { mutate: follow } = useMutation(['follow', userId], (userId: string) =>
+    UserService.follow(userId)
+  )
+
+  const { mutate: unfollow } = useMutation(
+    ['unfollow', userId],
+    (userId: string) => UserService.unfollow(userId)
+  )
+
+  function beFriend(type: 'follow' | 'unfollow', id: string) {
+    if (type === 'follow') follow(id)
+    else unfollow(id)
+  }
+
   return {
     userData,
     isLoading,
+    beFriend,
   }
 }

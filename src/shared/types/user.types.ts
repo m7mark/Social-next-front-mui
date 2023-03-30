@@ -35,3 +35,8 @@ export interface UsersDto {
   prevPage: number
   nextPage: number
 }
+
+export interface FollowUserResponseDto {
+  _id: string
+  followedIds: string[]
+}

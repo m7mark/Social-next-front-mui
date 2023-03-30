@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import { useAuth } from '../../../hooks/useAuth'
-import { AuthService } from '../../../services/auth/auth.service'
+import { AuthService } from '../services/auth/auth.service'
+import { useAuth } from './useAuth'
 
 export const useMe = () => {
   const currentUser = useAuth()
@@ -12,7 +12,7 @@ export const useMe = () => {
       enabled: !!currentUser,
     }
   )
-  const userData = data?._id === currentUser ? data : undefined
+  const meData = data?._id === currentUser ? data : undefined
 
-  return { userData, isLoading, isFetching, refetch }
+  return { meData, isLoading, isFetching, refetch }
 }

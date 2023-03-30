@@ -1,5 +1,5 @@
-import { Friends } from '../src/components/screens/Friends/Friends'
+import { FriendsList } from '../src/components/screens/FriendsList/FriendsList'
 
 export default function FriendsPage() {
-  return <Friends />
+  return <FriendsList />
 }

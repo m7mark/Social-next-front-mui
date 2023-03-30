@@ -7,10 +7,10 @@ import { Controller, useForm } from 'react-hook-form'
 import slider from '../../../shared/img/slider1.png'
 import { FriendItem } from './FriendItem/FriendItem'
 import { FriendItemSkeleton } from './FriendItem/FriendItemSkeleton'
-import styles from './Friends.module.scss'
-import { useFriends } from './useFriends'
+import styles from './FriendsList.module.scss'
+import { useFriendsList } from './useFriendsList'
 
-export const Friends = () => {
+export const FriendsList = () => {
   const {
     usersList,
     isLoading,
@@ -18,7 +18,7 @@ export const Friends = () => {
     onSubmit,
     currentPage,
     totalPages,
-  } = useFriends()
+  } = useFriendsList()
 
   const { control, handleSubmit } = useForm({
     mode: 'onSubmit',
@@ -107,7 +107,13 @@ export const Friends = () => {
           )}
         </div>
         <div className={clsx(styles.mainSidebar, 'boxWhite')}>
-          <Image src={slider} alt="slider image" width={285} height={285} />
+          <Image
+            priority
+            src={slider}
+            alt="slider image"
+            width={285}
+            height={285}
+          />
         </div>
       </div>
     </>

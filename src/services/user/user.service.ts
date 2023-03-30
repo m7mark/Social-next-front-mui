@@ -1,7 +1,11 @@
 import instance, { axiosBase } from '../../api/interceptors'
 import { getUserUrl } from '../../config/api.config'
 import { IProfileUpdateProps, IUsersProps } from '../../shared/types/api.types'
-import { UserDto, UsersDto } from '../../shared/types/user.types'
+import {
+  FollowUserResponseDto,
+  UserDto,
+  UsersDto,
+} from '../../shared/types/user.types'
 
 export const UserService = {
   async getUsers({ term, limit, page, isFriends }: IUsersProps) {
@@ -28,6 +32,20 @@ export const UserService = {
       homeUrl: profile.homeUrl ? profile.homeUrl : null,
     })
     return response
+  },
+
+  async follow(id: string) {
+    const { data } = await instance.post<FollowUserResponseDto>(
+      getUserUrl(`/follow/${id}`)
+    )
+    return data
+  },
+
+  async unfollow(id: string) {
+    const { data } = await instance.delete<FollowUserResponseDto>(
+      getUserUrl(`/follow/${id}`)
+    )
+    return data
   },
 
   async uploadPhoto(formData: FormData) {

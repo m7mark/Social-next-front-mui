@@ -44,7 +44,13 @@ export const ProfileInfo = ({
         )}
       </div>
       <div className={clsx(styles.sidebar, 'boxWhite')}>
-        <Image src={slider} alt="slider image" width={285} height={285} />
+        <Image
+          priority
+          src={slider}
+          alt="slider image"
+          width={285}
+          height={285}
+        />
       </div>
     </div>
   )

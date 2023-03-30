@@ -5,19 +5,19 @@ import {
   Checkbox,
   FormControlLabel,
   Skeleton,
-  TextField
+  TextField,
 } from '@mui/material'
 import Image from 'next/image'
 import { Controller, useForm } from 'react-hook-form'
+import { useMe } from '../../../../hooks/useMe'
 import userPlaceholder from '../../../../shared/img/avatar.png'
 import { LightTooltip, ShowServerError } from '../../../ui'
-import { useMe } from '../useMe'
 import styles from './EditProfile.module.scss'
 import { useEditProfile } from './useEditProfile'
 
 export const EditProfile = () => {
   const {
-    userData,
+    meData,
     refetch: refetchUserData,
     isFetching: isFetchingUserData,
   } = useMe()
@@ -42,7 +42,7 @@ export const EditProfile = () => {
       photo: '',
       status: '',
     },
-    values: userData?.profile,
+    values: meData?.profile,
   })
 
   return (
@@ -63,7 +63,7 @@ export const EditProfile = () => {
         ) : (
           <>
             <Image
-              src={userData ? userData.profile.photo : userPlaceholder}
+              src={meData ? meData.profile.photo : userPlaceholder}
               alt="User photo"
               width={150}
               height={150}
