@@ -11,14 +11,8 @@ import styles from './FriendsList.module.scss'
 import { useFriendsList } from './useFriendsList'
 
 export const FriendsList = () => {
-  const {
-    usersList,
-    isLoading,
-    changePage,
-    onSubmit,
-    currentPage,
-    totalPages,
-  } = useFriendsList()
+  const { usersList, isLoading, changePage, onSubmit, filter } =
+    useFriendsList()
 
   const { control, handleSubmit } = useForm({
     mode: 'onSubmit',
@@ -26,6 +20,7 @@ export const FriendsList = () => {
       term: '',
       isFriends: false,
     },
+    values: filter,
   })
 
   const isSkeleton = isLoading || !usersList
@@ -67,7 +62,7 @@ export const FriendsList = () => {
             name="isFriends"
             render={({ field }) => (
               <>
-                <Checkbox {...field} />
+                <Checkbox {...field} checked={field.value} />
                 <span>Only my friends</span>
               </>
             )}
@@ -77,11 +72,11 @@ export const FriendsList = () => {
 
       <div className={clsx(styles.mainContainer, 'twoColumn')}>
         <div className={clsx(styles.friendsList, 'boxWhite')}>
-          {totalPages ? (
+          {filter.totalPages ? (
             <Pagination
               className={styles.paginate}
-              count={totalPages}
-              page={currentPage}
+              count={filter.totalPages}
+              page={filter.page}
               onChange={changePage}
             />
           ) : (
