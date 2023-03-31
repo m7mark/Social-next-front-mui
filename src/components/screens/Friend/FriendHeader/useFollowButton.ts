@@ -19,17 +19,18 @@ export const useFollowButton = () => {
   const { mutate: follow, isLoading: isLoadingFollow } = useMutation(
     ['follow', userId],
     (userId: string) => UserService.follow(userId),
-    { onSuccess: () => refetch() }
+    { onSuccess: async () => await refetch() }
   )
 
   const { mutate: unfollow, isLoading: isLoadingUnfollow } = useMutation(
     ['unfollow', userId],
     (userId: string) => UserService.unfollow(userId),
-    { onSuccess: () => refetch() }
+    { onSuccess: async () => await refetch() }
   )
 
-  function handleFollow(type: 'follow' | 'unfollow') {
-    if (type === 'follow') {
+  const handleFollow = (e: React.MouseEvent<HTMLElement>) => {
+    if (!(e.target instanceof HTMLElement)) return
+    if (e.target.textContent === 'Follow') {
       follow(userId)
       setIsFollowed(true)
     } else {

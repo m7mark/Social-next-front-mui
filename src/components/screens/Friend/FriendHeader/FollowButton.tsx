@@ -4,10 +4,6 @@ import { useFollowButton } from './useFollowButton'
 export const FollowButton = () => {
   const { handleFollow, isFollowed, isLoading } = useFollowButton()
 
-  const handleClick = () => {
-    isFollowed ? handleFollow('unfollow') : handleFollow('follow')
-  }
-
   return (
     <LoadingButton
       fullWidth
@@ -15,7 +11,7 @@ export const FollowButton = () => {
       size="small"
       loadingPosition="center"
       variant="text"
-      onClick={handleClick}
+      onClick={handleFollow}
     >
       {isFollowed ? 'Unfollow' : 'Follow'}
     </LoadingButton>

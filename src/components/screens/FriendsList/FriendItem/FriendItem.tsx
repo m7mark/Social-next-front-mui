@@ -4,6 +4,7 @@ import { FriendItemProps } from './FriendItem.props'
 
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
+import { useAuth } from '../../../../hooks/useAuth'
 import userPlaceholder from '../../../../shared/img/avatar.png'
 
 export const FriendItem = ({
@@ -13,11 +14,14 @@ export const FriendItem = ({
   ...rest
 }: FriendItemProps) => {
   const { push } = useRouter()
+  const currentUser = useAuth()
+  const pushUrl = currentUser === user._id ? `/me` : `/friend/${user._id}`
+
   return (
     <div className={clsx(styles.friendItem, className)} {...rest}>
       <Image
         className={styles.img}
-        onClick={() => push(`/friend/${user._id}`)}
+        onClick={() => push(pushUrl)}
         src={user.profile.photo ?? userPlaceholder}
         width={80}
         height={80}

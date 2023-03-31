@@ -15,12 +15,12 @@ export const useRegister = () => {
     (data: IAuthProps) =>
       AuthService.register(data.name, data.email, data.password),
     {
-      onError(error: AxiosError<IApiError>) {
+      onError: (error: AxiosError<IApiError>) => {
         setIsServerError(true)
         const message = error.response?.data.message
         setServerError(message ? message : 'Some server Error')
       },
-      onSuccess() {
+      onSuccess: () => {
         const redirect = query.redirect ? String(query.redirect) : '/'
         push(redirect)
       },

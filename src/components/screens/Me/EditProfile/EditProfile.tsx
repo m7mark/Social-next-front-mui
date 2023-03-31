@@ -16,11 +16,7 @@ import styles from './EditProfile.module.scss'
 import { useEditProfile } from './useEditProfile'
 
 export const EditProfile = () => {
-  const {
-    meData,
-    refetch: refetchUserData,
-    isFetching: isFetchingUserData,
-  } = useMe()
+  const { meData } = useMe()
 
   const {
     onSubmit,
@@ -30,7 +26,7 @@ export const EditProfile = () => {
     isServerError,
     uploadPhoto,
     isLoadingUpdatedImg,
-  } = useEditProfile(refetchUserData)
+  } = useEditProfile()
 
   const { control, handleSubmit } = useForm({
     mode: 'onSubmit',
@@ -58,7 +54,7 @@ export const EditProfile = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className={styles.photoEdit}>
-        {isLoadingUpdatedImg || isFetchingUserData ? (
+        {isLoadingUpdatedImg ? (
           <Skeleton height={150} width={150} variant="circular" />
         ) : (
           <>

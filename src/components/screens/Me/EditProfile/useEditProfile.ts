@@ -3,27 +3,30 @@ import { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
+import { useMe } from '../../../../hooks/useMe'
 import { UserService } from '../../../../services/user/user.service'
 import {
   IApiError,
   IProfileUpdateProps,
 } from '../../../../shared/types/api.types'
 
-export const useEditProfile = (refetch: any) => {
+export const useEditProfile = () => {
   const [isServerError, setIsServerError] = useState(false)
   const [serverError, setServerError] = useState<string | undefined>(undefined)
   const { query, push } = useRouter()
+  const { refetch } = useMe()
 
   const { isLoading, mutate: updateProfile } = useMutation(
     ['editProfile'],
     (data: IProfileUpdateProps) => UserService.updateProfile(data),
     {
-      onError(error: AxiosError<IApiError>) {
+      onError: (error: AxiosError<IApiError>) => {
         setIsServerError(true)
         const message = error.response?.data.message
         setServerError(message ? message : 'Some server Error')
       },
-      onSuccess() {
+      onSuccess: async () => {
+        await refetch()
         const redirect = query.redirect ? String(query.redirect) : '/me'
         push(redirect)
       },
@@ -34,14 +37,12 @@ export const useEditProfile = (refetch: any) => {
     ['editPhoto'],
     (formData: FormData) => UserService.uploadPhoto(formData),
     {
-      onError(error: AxiosError<IApiError>) {
+      onError: (error: AxiosError<IApiError>) => {
         setIsServerError(true)
         const message = error.response?.data.message
         setServerError(message ? message : 'Some server Error')
       },
-      onSuccess() {
-        refetch()
-      },
+      onSuccess: async () => await refetch(),
     }
   )
 
@@ -65,9 +66,9 @@ export const useEditProfile = (refetch: any) => {
     onSubmit,
     isLoading,
     isLoadingUpdatedImg,
+    isServerError,
     serverError,
     closeServerError,
-    isServerError,
     uploadPhoto,
   }
 }
