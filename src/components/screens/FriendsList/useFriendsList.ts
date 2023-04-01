@@ -17,10 +17,6 @@ export const useFriendsList = () => {
     }
   )
 
-  const changePage = (event: React.ChangeEvent<unknown>, value: number) => {
-    addPage(value)
-  }
-
   const onSubmit: SubmitHandler<{
     term: string | undefined
     isFriends: boolean
@@ -33,7 +29,7 @@ export const useFriendsList = () => {
   return {
     usersList,
     isLoading,
-    changePage,
+    addPage,
     onSubmit,
     filter,
   }

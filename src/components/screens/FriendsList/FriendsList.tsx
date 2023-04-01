@@ -11,8 +11,7 @@ import styles from './FriendsList.module.scss'
 import { useFriendsList } from './useFriendsList'
 
 export const FriendsList = () => {
-  const { usersList, isLoading, changePage, onSubmit, filter } =
-    useFriendsList()
+  const { usersList, isLoading, addPage, onSubmit, filter } = useFriendsList()
 
   const { control, handleSubmit } = useForm({
     mode: 'onSubmit',
@@ -77,7 +76,7 @@ export const FriendsList = () => {
               className={styles.paginate}
               count={filter.totalPages}
               page={filter.page}
-              onChange={changePage}
+              onChange={(_, p) => addPage(p)}
             />
           ) : (
             <div className={styles.paginateSkeleton} />

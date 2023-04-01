@@ -18,16 +18,21 @@ type Actions = {
   addPage: (page: number) => void
   addTerm: (term: string | undefined) => void
   addIsFriends: (isFriends: boolean | undefined) => void
+  resetFilter: () => void
+}
+
+const initialState = {
+  term: undefined,
+  limit: undefined,
+  page: 1,
+  isFriends: false,
+  totalPages: undefined,
 }
 
 export const useFilterStore = create(
   immer<State & Actions>((set) => ({
     filter: {
-      term: undefined,
-      limit: undefined,
-      page: 1,
-      isFriends: false,
-      totalPages: undefined,
+      ...initialState,
     },
     totalPages: undefined,
     addTotalPages: (total) =>
@@ -45,6 +50,10 @@ export const useFilterStore = create(
     addIsFriends: (isFriends) =>
       set((state) => {
         state.filter.isFriends = !!isFriends
+      }),
+    resetFilter: () =>
+      set((state) => {
+        state.filter = initialState
       }),
   }))
 )
