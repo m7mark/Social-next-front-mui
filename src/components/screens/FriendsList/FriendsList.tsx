@@ -1,78 +1,42 @@
-import SearchIcon from '@mui/icons-material/Search'
-import { Checkbox, IconButton, Pagination, Paper } from '@mui/material'
-import InputBase from '@mui/material/InputBase'
+import { Pagination } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { Controller, useForm } from 'react-hook-form'
 import slider from '../../../shared/img/slider1.png'
+import { useFilterStore } from '../../../shared/store/filter.store'
 import { FriendItem } from './FriendItem/FriendItem'
 import { FriendItemSkeleton } from './FriendItem/FriendItemSkeleton'
 import styles from './FriendsList.module.scss'
+import { FriendsForm } from './FriendsSearchForm/FriendsForm'
 import { useFriendsList } from './useFriendsList'
 
 export const FriendsList = () => {
-  const { usersList, isLoading, addPage, onSubmit, filter } = useFriendsList()
+  const { friendsList, isLoading } = useFriendsList()
 
-  const { control, handleSubmit } = useForm({
-    mode: 'onSubmit',
-    defaultValues: {
-      term: '',
-      isFriends: false,
-    },
-    values: filter,
-  })
+  const { filter, addPage } = useFilterStore()
 
-  const isSkeleton = isLoading || !usersList
+  // const { filter, addPage } = useFilterStore(
+  //   (state) => ({
+  //     filter: state.filter,
+  //     addPage: state.addPage,
+  //   }),
+  //   shallow
+  // )
+
+  const isSkeleton = isLoading || !friendsList
   const skeletonArray = new Array(10).fill(null)
 
   return (
     <>
-      <div className={clsx(styles.findForm, 'boxWhite')}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Paper
-            variant="outlined"
-            component="div"
-            sx={{
-              p: '2px 4px',
-              display: 'flex',
-              alignItems: 'center',
-              mb: 1,
-            }}
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <Controller
-              control={control}
-              name="term"
-              render={({ field }) => (
-                <InputBase
-                  {...field}
-                  sx={{ ml: 1, flex: 1 }}
-                  placeholder="Find friends"
-                  inputProps={{ 'aria-label': 'Find friends' }}
-                />
-              )}
-            />
-            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-              <SearchIcon />
-            </IconButton>
-          </Paper>
-          <Controller
-            control={control}
-            name="isFriends"
-            render={({ field }) => (
-              <>
-                <Checkbox {...field} checked={field.value} />
-                <span>Only my friends</span>
-              </>
-            )}
-          />
-        </form>
+      <div className={clsx(styles.form, 'boxWhite')}>
+        <FriendsForm />
       </div>
-
       <div className={clsx(styles.mainContainer, 'twoColumn')}>
         <div className={clsx(styles.friendsList, 'boxWhite')}>
-          {filter.totalPages ? (
+          {true ? (
             <Pagination
+              disabled={filter.totalPages === undefined}
+              hideNextButton
+              variant="outlined"
               className={styles.paginate}
               count={filter.totalPages}
               page={filter.page}
@@ -89,7 +53,7 @@ export const FriendsList = () => {
             </>
           ) : (
             <>
-              {usersList.docs.map((user) => (
+              {friendsList.docs.map((user) => (
                 <FriendItem
                   className={styles.item}
                   key={user._id}

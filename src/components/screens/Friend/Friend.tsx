@@ -3,7 +3,7 @@ import { FollowButton } from './FriendHeader/FollowButton'
 import { useFriend } from './useFriend'
 
 export const Friend = () => {
-  const { userData, isLoading, beFriend } = useFriend()
+  const { userData, isLoading } = useFriend()
   return (
     <div>
       <ProfileHeader userData={userData} isLoading={isLoading}>
